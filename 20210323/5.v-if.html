@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>v-if</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div v-if="say === '学习了'">今天学习Vue</div>
+            <div v-else>今天没有学习Vue</div>
+            <div>
+                <div v-if="fenshu >90">优秀</div>
+                <div v-else-if="fenshu>80">良好</div>
+                <div v-else-if="fenshu>70">一般</div>
+                <div v-else-if="fenshu>60">及格</div>
+                <div v-else>不及格</div>
+            </div>
+        </div>
+        <script>
+            new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        say: '学习了',
+                        // say: '没有学习',
+                        fenshu: 59,
+                    };
+                },
+            });
+        </script>
+    </body>
+</html>

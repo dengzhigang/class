@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>v-once</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <!-- v-once: 只会执行一次,第二次只是显示了上一次的结果 -->
+        <div id="app">
+            <div v-for="item in list" v-once>{{item}}</div>
+        </div>
+        <script>
+            new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        list: [1, 2, 3],
+                    };
+                },
+            });
+        </script>
+    </body>
+</html>

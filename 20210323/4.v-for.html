@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>v-for</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <!-- item: '网站首页','新闻中心','下载中心' -->
+                <li v-for="item in list">{{item}}</li>
+                <!-- <li>新闻中心</li>
+                <li>下载中心</li> -->
+            </ul>
+            <ul>
+                <!-- item : { title: '今天天气不错', date: '2021-03-23' } -->
+                <!-- key: 是需要唯一的值,类似数据库里面的主键 -->
+                <li v-for="(item,index) in newList" :key="index">
+                    <span>{{item.title}}</span>
+                    <span>{{item.date}}</span>
+                    <span>索引:{{index}}</span>
+                </li>
+                <!-- <li>
+                    <span>222</span>
+                    <span>2021-12-21</span>
+                </li>
+                <li>
+                    <span>333</span>
+                    <span>2021-12-21</span>
+                </li> -->
+            </ul>
+        </div>
+        <script>
+            new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        list: ['网站首页', '新闻中心', '下载中心'],
+                        newList: [
+                            { title: '今天天气不错', date: '2021-03-23' },
+                            { title: '今天学习Vue', date: '2021-03-24' },
+                            { title: 'Vue渐进式框架', date: '2021-03-25' },
+                        ],
+                    };
+                },
+            });
+            // 命名: 小驼峰命名法 newList
+            let arr = ['你好', '你好2', '你好3'];
+            for (let index = 0; index < arr.length; index++) {
+                console.log(index);
+                console.log(arr[index]);
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 注释 -->
+        <div class="app">
+            <!-- 
+                id: 在整个dom里面是唯一的,那么可以不通过获取直接拿到dom 
+            -->
+            <span id="ele">Hello</span>
+        </div>
+        <script>
+            console.log(ele);
+            // 原生JS
+            console.dir(document);
+            var app = document.querySelector('.app');
+            var p = document.createElement('p'); // <p></p>
+            p.innerText = '你好!'; // <p>你好</p>
+            console.log(p);
+            // app.before(p); // 在app前面插入dom元素
+            // app.after(p); // 在app后面插入dom元素
+            app.insertBefore(p, ele); // 在s元` 素前面插入dom
+            // app.appendChild(p); // 在app元素的最后插入dom
+
+            var obj = {
+                title: 'zhangruyang',
+                fn: function () {
+                    console.log('我是函数');
+                },
+            };
+            obj.fn()
+            console.log(obj.title);
+        </script>
+    </body>
+</html>

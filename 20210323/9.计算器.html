@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>计算器</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- .number:是v-model的修饰符,代表只能绑定的数据只能是数字 -->
+            <!-- <input type="number" v-model.number="startNumber" />+ <input type="number" v-model.number="endNumber" />=
+            <input type="text" v-model="total" /> -->
+            <input type="text" v-model="startNumber" />+ <input type="text" v-model="endNumber" @keyup.enter="autoTotal" />=
+            <input type="text" v-model="total" />
+            <button @click="handleTotal">开始计算</button>
+            <!-- 13: 是enter键盘码 -->
+        </div>
+        <script>
+            new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        startNumber: '',
+                        endNumber: '',
+                        total: '',
+                    };
+                },
+                methods: {
+                    // 从页面中获取到的内容或者数据都是字符串类型
+                    // 在控制台打印,黑色的字体一般都是字符串,蓝色的一般都是数字
+                    handleTotal: function () {
+                        // this.total = Number(this.startNumber) + Number(this.endNumber);
+                        this.total = this.startNumber * 1 + this.endNumber * 1;
+                        console.log(this.startNumber);
+                        console.log(this.endNumber);
+                    },
+                    autoTotal: function () {
+                        this.total = this.startNumber * 1 + this.endNumber * 1;
+                        console.log('我按了enter了');
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>v-on</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <!-- 
+            v-on 缩写 @ 这个指令用来处理事件 
+        -->
+        <div id="app">
+            <button v-on:click="handleClick">单击</button>
+            <span>{{value}}</span>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        // value: 0,
+                        value: '',
+                    };
+                },
+                methods: {
+                    // this: 代表vue这个实例对象
+                    handleClick: function () {
+                        console.log(this);
+                        this.value++; // 隐式数据类型转换,转换成了数字类型
+                        console.log('我被点击了');
+                    },
+                },
+            });
+            console.log(vm.value);
+        </script>
+    </body>
+</html>

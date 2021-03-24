@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>vue - component</title>
+    </head>
+    <body>
+        <!-- 
+            组件: 目的为了复用,然后把相关代码抽离出来单独放在一个文件里面 
+            例子: 幻灯片
+        -->
+        <!-- 
+            :parent: 通过动态绑定属性在子组件上,把父组件的值传递给子组件
+        -->
+        <div id="app">
+            <div>{{ value }}</div>
+            <btn2 :parent="value" :parent2="value2" :parent3="value3"></btn2>
+        </div>
+        <script src="../vue.js"></script>
+        <script>
+            var btn = {
+                template: '<button>{{text}}--{{parent}}--{{parent2}}---{{parent3.v1}}</button>',
+                props: ['parent','parent2','parent3'],
+                data() {
+                    return {
+                        text: '按钮2',
+                        // value: value, // 可以简写成value,
+                    };
+                },
+            };
+            new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        value: '我是父组件中的Value',
+                        value2: '我是父组件中的Value2',
+                        value3: {
+                            v1: '我是父组件中的Value3',
+                            v2: '我是父组件中的Value4',
+                        },
+                    };
+                },
+                // 组件
+                components: {
+                    // 组件名: 组件值
+                    btn2: btn,
+                },
+            });
+
+            // 当key和value(属性名和属性值(变量))一样,那么可以用key来简写
+            var age = 18;
+            var obj = {
+                name: '你好!',
+                age,
+            };
+            console.log(obj);
+
+            // 当对象有多个相同的属性时,以最后的属性为准
+            var obj2 = {
+                name: ' 张三',
+                name: '李四',
+                name: '王二',
+            };
+            console.log(obj2.name);
+        </script>
+    </body>
+</html>

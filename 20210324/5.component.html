@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>vue - component</title>
+    </head>
+    <body>
+        <!-- 插槽 v-solt 缩写 # -->
+        <div id="app">
+            <btn>
+                <template>
+                    <!-- Hello World! -->
+                    {{value}}
+                </template>
+                <!-- <template v-slot:header> -->
+                <template #header>
+                    <h1>{{ value }}</h1>
+                </template>
+                <template v-slot:content>
+                    <h3>我是内容</h3>
+                </template>
+                <template v-slot:footer>
+                    <h2>我是底部</h2>
+                </template>
+                <!-- <template v-slot="header"> Hello World! </template> -->
+            </btn>
+        </div>
+        <!-- <router-link></router-link>
+        <router-view /> -->
+        <!-- 声明的第二种方式 -->
+        <template id="btn">
+            <!-- 这里需要一个root element(根元素)去包裹 -->
+            <div>
+                <button>按钮</button>
+                <!--  匿名插槽 -->
+                <slot>呵呵</slot>
+                <!-- 具名插槽 -->
+                <slot name="header"></slot>
+                <slot name="content"></slot>
+                <slot name="footer"></slot>
+            </div>
+        </template>
+        <script src="../vue.js"></script>
+        <script>
+            // var btn = {
+            //     template: '<button>按钮</button>',
+            // };
+            var btn = {
+                props: ['parent'],
+                template: '#btn',
+            };
+            new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        value: '开心',
+                    };
+                },
+                components: {
+                    btn,
+                },
+            });
+        </script>
+    </body>
+</html>

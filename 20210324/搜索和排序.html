@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>搜索和排序</title>
+    </head>
+    <body>
+        <div id="app">
+            搜索: <input type="text" v-model="searchName" />
+            <button @click="handlePrice(2)">价格升序</button>
+            <button @click="handlePrice(1)">价格降序</button>
+            <button @click="handlePrice(0)">默认排序</button>
+            <li v-for="(item,index) in phoneList">{{index}}--{{item.title}}--{{item.price}}</li>
+        </div>
+        <script src="../vue.js"></script>
+        <script>
+            new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        searchName: '',
+                        type: 0, // 0: 不排序, 1: 降序, 2: 升序
+                        list: [
+                            { title: '红米手机', price: 2000 },
+                            {
+                                title: '华为手机',
+                                price: 5000,
+                            },
+                            { title: 'OPPO手机', price: 3000 },
+                            { title: 'VIVO手机', price: 4000 },
+                        ],
+                    };
+                },
+                methods: {
+                    // descPrice(a, b) {},
+                    handlePrice(type) {
+                        this.type = type;
+                    },
+                },
+                computed: {
+                    phoneList() {
+                        let phoneList,
+                            { list, searchName } = this;
+                        phoneList = list.filter(
+                            (item) => item.title.indexOf(searchName.toUpperCase()) !== -1,
+                        );
+                        // 升序
+                        if (this.type === 1) {
+                            phoneList.sort((a, b) => {
+                                return b.price - a.price;
+                            });
+                        } else if (this.type === 2) {
+                            //降序
+                            phoneList.sort((a, b) => {
+                                return a.price - b.price;
+                            });
+                        }
+                        return phoneList;
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

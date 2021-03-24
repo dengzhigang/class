@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>vue - component</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- <div>{{ value }}</div> -->
+            <!-- <btn2></btn2> -->
+            <btn2 :parent="value"></btn2>
+        </div>
+        <script src="../vue.js"></script>
+        <script>
+            var btn = {
+                template: '<button>{{text}}---{{parent}}</button>',
+                props: {
+                    parent: {
+                        // type: Object,
+                        // type: Array,
+                        type: Number,
+                        required: true,
+                        // default: 100,
+                    },
+                },
+                data() {
+                    return {
+                        text: '按钮2',
+                    };
+                },
+            };
+            new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        value: 10,
+                    };
+                },
+                // 组件
+                components: {
+                    // 组件名: 组件值
+                    btn2: btn,
+                },
+            });
+
+            var num = new Number(10) // Number是一个构造函数
+            var id1 = Symbol(1); // 我是唯一的 Symbol它不是构造函数
+            var id2 = Symbol(1); // 我也是唯一的
+            console.log(id1); // 1
+            console.log(id2); // 1
+            console.log(id1 == id2); // false
+            console.log(NaN == NaN); // false
+            console.log(num);
+        </script>
+    </body>
+</html>

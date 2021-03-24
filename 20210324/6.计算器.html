@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>vue - 计算器</title>
+    </head>
+    <body>
+        <div id="cal">
+            <input type="text" v-model="startNumber" />
+            <select v-model="fuhao">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+            <input type="text" v-model="endNumber" />=
+            <input type="text" v-model="total" />
+            <button @click="result">计算</button>
+        </div>
+        <script src="../vue.js"></script>
+        <script>
+            new Vue({
+                el: '#cal',
+                data() {
+                    return {
+                        startNumber: '',
+                        endNumber: '',
+                        total: '',
+                        fuhao: '+',
+                    };
+                },
+                methods: {
+                    result: function () {
+                        // typeof 一元运算符... 用来检测数据类型
+                        console.log(typeof this.startNumber);
+                        var str;
+                        str = `${this.startNumber}${this.fuhao}${this.endNumber}`;
+                         // 1+2 eval会把能够运算的字符串运算
+                        this.total = eval(str);
+                    },
+                },
+            });
+            // ``: 这个是模板字符串 ES6新特性
+            // es6模板字符串 1.支持换行 2.支持变量
+            var str1 = 'hellohellohellohellohellohellohellohellohellohello';
+            var str2 = 'world!';
+            var str33 = str1 + str2 + '!!!';
+            var str3 = `hello`;
+            var str4 = `${str3}world`;
+            console.log(str1, '====es5====');
+            console.log(str3, '====es6====');
+            // console.log(str33,'str33');
+            console.log(str4,'str4');
+        </script>
+    </body>
+</html>

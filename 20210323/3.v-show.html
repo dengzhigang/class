@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>v-show</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div v-show="isShow">我不显示</div>
+        </div>
+        <script>
+            // v-show : 当条件为真值则显示,假值则不显示
+            // js的数据类型:
+            //  一.简单数据类型: 数字,字符串,布尔型,undefined,null,Symbol 
+            // 二.复杂数据类型: 对象(object),函数(Function),正则,日期(Date)等等...
+            var zhangruyang = 'zhangruyang';
+             new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        // isShow: true,
+                        isShow: 'false',
+                    };
+                },
+            });
+            // typeof: 一元运算符,运来检测数据类型
+            console.log(typeof window); // object
+            console.log(window.zhangruyang); // undefined
+            console.dir(window); 
+        </script>
+    </body>
+</html>
