@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>vue -slot</title>
+    </head>
+    <body>
+        <div id="app">
+            <btn>
+                <!-- 这里必须使用template标签去承载内容 -->
+                <template #header="content">我是父组件内容{{content.data}}</template>
+                <template #footer="content">{{content}} </template>
+                <!-- content: {data: '晴天'} -->
+            </btn>
+        </div>
+        <template id="btn">
+            <div>
+                <button>按钮</button>
+                <!-- 作用域插槽 -->
+                <slot name="header" :data="content">子组件默认内容</slot>
+                <slot name="footer">雨天</slot>
+            </div>
+        </template>
+        <script src="../vue.js"></script>
+        <script>
+            var btn = {
+                template: '#btn',
+                data() {
+                    return {
+                        content: '晴天',
+                    };
+                },
+            };
+
+            new Vue({
+                el: '#app',
+                data() {
+                    return {};
+                },
+                components: {
+                    btn,
+                },
+            });
+
+            // 参数: 1.形参  2.实参
+            function fn(a = 1, b = 1) {
+                return a + b;
+            }
+            fn(1, 2);
+        </script>
+    </body>
+</html>

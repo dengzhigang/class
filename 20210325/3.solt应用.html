@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>slot - 应用</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div id="app">
+            <btn :classname="className" :txt="content"></btn>
+
+            <div>
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    @click="handleChange('btn-default','默认')"
+                >
+                    默认
+                </button>
+                <button type="button" class="btn btn-success" @click="handleChange('btn-success')">
+                    成功
+                </button>
+                <button type="button" class="btn btn-warning" @click="handleChange('btn-warning')">
+                    警告
+                </button>
+            </div>
+        </div>
+        <template id="btn">
+            <!-- v-bind 动态绑定 缩写 : -->
+            <button :class="['btn',classname]">{{txt}}</button>
+        </template>
+        <script src="../vue.js"></script>
+        <script>
+            var btn = {
+                props: {
+                    classname: {
+                        type: String,
+                    },
+                    txt: {
+                        type: String,
+                    },
+                },
+                template: '#btn',
+            };
+            new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        className: '',
+                        content: '',
+                    };
+                },
+                methods: {
+                    /*
+                        1.通过点击事件去拿到class
+                        2.拿到class之后,我们要把拿到的这个值赋值给className 
+                    */
+                    handleChange(name, content) {
+                        // var className
+                        // className = name;
+                        this.className = name;
+                        this.content = content;
+                        console.log(this.content);
+                        console.log(this.className);
+                    },
+                    // handleChange: function () {},
+                },
+                components: {
+                    btn,
+                },
+            });
+        </script>
+    </body>
+</html>

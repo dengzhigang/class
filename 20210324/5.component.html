@@ -12,11 +12,11 @@
             <btn>
                 <template>
                     <!-- Hello World! -->
-                    {{value}}
+                    {{ value }}
                 </template>
                 <!-- <template v-slot:header> -->
-                <template #header>
-                    <h1>{{ value }}</h1>
+                <template #header="text">
+                    <h1>{{ text.data }}</h1>
                 </template>
                 <template v-slot:content>
                     <h3>我是内容</h3>
@@ -37,7 +37,7 @@
                 <!--  匿名插槽 -->
                 <slot>呵呵</slot>
                 <!-- 具名插槽 -->
-                <slot name="header"></slot>
+                <slot name="header" :data="text"></slot>
                 <slot name="content"></slot>
                 <slot name="footer"></slot>
             </div>
@@ -50,6 +50,11 @@
             var btn = {
                 props: ['parent'],
                 template: '#btn',
+                data() {
+                    return {
+                        text: '子组件数据',
+                    };
+                },
             };
             new Vue({
                 el: '#app',
