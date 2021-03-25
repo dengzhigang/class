@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>filter - 过滤或者叫管道符</title>
+    </head>
+    <body>
+        <div id="app">
+            <div>
+                <label>性别:</label>{{sex | formatterSex}}
+                <!-- 1代表男  2代表女 -->
+                <input type="radio" value="1" v-model="sex" />男
+                <input type="radio" value="2" v-model="sex" />女
+            </div>
+        </div>
+        <script src="../vue.js"></script>
+        <script>
+            new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        sex: 1,
+                    };
+                },
+                filters: {
+                    formatterSex: function (val) {
+                        //  这里获取的val是字符串类型数据
+                        console.log(val);
+                        // if (val == 1) {
+                        //     return '男';
+                        // } else if (val == 2) {
+                        //     return '女';
+                        // }
+                        // return val == 1 ? '男' : val == 2 ? '女' : '';
+                        
+                        // switch 默认比较使用的是全等(===)比较
+                        switch (val) {
+                            case '1':
+                                return '男';
+                                break;
+                            case '2':
+                                return '女';
+                                break;
+                            default:
+                                return '';
+                                break;
+                        }
+                        // return Number(val) === 1 ? '男' : '女';
+                    },
+                },
+            });
+
+            /*
+                ==: 普通比较,只是比较数值,不比较类型
+                ===: 全等,数值和类型都要比较
+            */
+        </script>
+    </body>
+</html>
